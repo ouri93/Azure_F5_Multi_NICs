@@ -131,7 +131,7 @@
     "vnetID": "[resourceId(parameters('vnetResourceGroupName'),'Microsoft.Network/virtualNetworks',parameters('vnetName'))]",
     "subnet-idInternal": "[concat(variables('vnetID'),'/subnets/',parameters('internalSubnetName'))]",
     "f5publicIPName": "[concat(parameters('f5Name'),'-IP')]",
-    "newStorageAccountName": "[concat(parameters('f5Name'),'store')]",
+    "newStorageAccountName": "f5extltmstore",
     "loadBalancerName": "[concat(parameters('f5Name'),'-ALB')]", 
     "publicIPID": "[resourceId('Microsoft.Network/publicIPAddresses',variables('f5publicIPName'))]",
     "imageNameToLower": "[toLower(parameters('f5SKU'))]",     
