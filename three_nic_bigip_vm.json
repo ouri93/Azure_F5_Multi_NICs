@@ -189,8 +189,8 @@
         "storageProfile": {
           "imageReference": {
             "publisher": "f5-networks",
-            "offer": "f5-big-ip",
-            "sku": "[parameters('f5SKU')]",
+            "offer": "f5-big-ip-hourly",
+            "sku": "f5-bigip-virtual-edition-25m-good-hourly",
             "version": "latest"
           },
           "osDisk": {
