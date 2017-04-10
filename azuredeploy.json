@@ -349,7 +349,7 @@
           "numberOFBIGIPs": { "value": "[parameters('numberOFBIGIPs')]" },
           "adminUsername": { "value": "[parameters('adminUsername')]" },
           "adminPassword": { "value": "[parameters('adminPassword')]" },
-          "f5SKU": { "value": "[variables('skuToUse')]" },
+          "f5SKU": { "value": "f5-bigip-virtual-edition-25m-good-hourly" },
           "vnetResourceGroupName": { "value": "[toLower(parameters('vnetResourceGroupName'))]" },
           "vnetName": { "value": "[parameters('vnetName')]" },
           "externalSubnetName": { "value": "[parameters('externalSubnetName')]" },
