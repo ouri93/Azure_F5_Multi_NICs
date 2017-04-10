@@ -131,6 +131,8 @@
     "vnetID": "[resourceId(parameters('vnetResourceGroupName'),'Microsoft.Network/virtualNetworks',parameters('vnetName'))]",
     "subnet-idInternal": "[concat(variables('vnetID'),'/subnets/',parameters('internalSubnetName'))]",
     "newStorageAccountName": "f5extwebstore",
+    "f5publicIPName": "[concat(parameters('f5Name'),'-IP')]",    
+    "publicIPID": "[resourceId('Microsoft.Network/publicIPAddresses',variables('f5publicIPName'))]",    
     "imageNameToLower": "[toLower(parameters('f5SKU'))]",
     "offerToUse": "f5-big-ip-hourly",    
     "skuToUse": "[concat('f5-bigip-virtual-edition-', parameters('licensedBandwidth'), '-', variables('imageNameToLower'),'-hourly')]", 
