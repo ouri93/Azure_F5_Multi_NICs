@@ -186,7 +186,7 @@
             "publisher": "f5-networks",
             "offer": "f5-big-ip-hourly",
             "sku": "f5-bigip-virtual-edition-25m-good-hourly",
-            "version": "13.0.000"
+            "version": "latest"
           },
           "osDisk": {
             "name": "[concat(parameters('f5Name'), 'osDisk',copyIndex())]",
