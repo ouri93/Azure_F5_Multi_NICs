@@ -363,6 +363,7 @@
           "f5SKU": { "value": "f5-bigip-virtual-edition-25m-good-hourly" },
           "vnetResourceGroupName": { "value": "[toLower(parameters('vnetResourceGroupName'))]" },
           "vnetName": { "value": "[parameters('vnetName')]" },
+          "licensedBandwidth": { "value": "25m" },
           "externalSubnetName": { "value": "[parameters('externalSubnetName')]" },
           "internalSubnetName": { "value": "[parameters('internalSubnetName')]" },
           "additionalSubnets": { "value": "[parameters('additionalSubnets')]"}
