@@ -188,13 +188,13 @@
           }
         },
         "networkProfile": {
+          "networkInterfaces": [
             {
               "id": "[resourceId('Microsoft.Network/networkInterfaces',concat(variables('externalNICNamePrefix'),copyIndex()))]",
               "properties": {
                 "primary": true
               }
-            },          
-          "networkInterfaces": [
+            },
             {
               "id": "[resourceId('Microsoft.Network/networkInterfaces',concat(variables('udrNICNamePrefix'),copyIndex()))]",
               "properties": {
@@ -208,8 +208,8 @@
               }
             }
           ]
-         }
         }
       }
+    }
   ]
 }
