@@ -146,6 +146,7 @@
         "name": "vmcopy"
       },
       "dependsOn": [
+        "[concat('Microsoft.Network/networkInterfaces/',variables('externalNICNamePrefix'), copyIndex())]",	        
         "[concat('Microsoft.Network/networkInterfaces/',variables('udrNICNamePrefix'), copyIndex())]",
         "[concat('Microsoft.Network/networkInterfaces/',variables('additionNICNamePrefix'),0, copyIndex())]"
       ],
@@ -187,6 +188,12 @@
           }
         },
         "networkProfile": {
+            {
+              "id": "[resourceId('Microsoft.Network/networkInterfaces',concat(variables('externalNICNamePrefix'),copyIndex()))]",
+              "properties": {
+                "primary": true
+              }
+            },          
           "networkInterfaces": [
             {
               "id": "[resourceId('Microsoft.Network/networkInterfaces',concat(variables('udrNICNamePrefix'),copyIndex()))]",
