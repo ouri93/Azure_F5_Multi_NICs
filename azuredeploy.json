@@ -230,6 +230,21 @@
           }
         ]
       }
+    },
+		{
+      "apiVersion": "2015-05-01-preview",
+      "tags": {
+        "displayName": "Public IP Address"
+      },
+      "type": "Microsoft.Network/publicIPAddresses",
+      "name": "[variables('f5publicIPName')]",
+      "location": "[resourceGroup().location]",
+      "properties": {
+        "publicIPAllocationMethod": "Dynamic",
+        "dnsSettings": {
+          "domainNameLabel": "[parameters('f5Name')]"
+        }
+      }
     },    
     {
       "apiVersion": "2015-01-01",
