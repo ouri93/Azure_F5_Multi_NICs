@@ -131,6 +131,7 @@
     "vnetID": "[resourceId(parameters('vnetResourceGroupName'),'Microsoft.Network/virtualNetworks',parameters('vnetName'))]",
     "subnet-idInternal": "[concat(variables('vnetID'),'/subnets/',parameters('internalSubnetName'))]",
     "newStorageAccountName": "f5extwebstore",
+    "loadBalancerName": "[concat(parameters('f5Name'),'-ALB')]",
     "f5publicIPName": "[concat(parameters('f5Name'),'-IP')]",    
     "publicIPID": "[resourceId('Microsoft.Network/publicIPAddresses',variables('f5publicIPName'))]",    
     "imageNameToLower": "[toLower(parameters('f5SKU'))]",
@@ -176,6 +177,21 @@
         "sku": "[variables('skuToUse')]"        
       }
     },
+    {
+      "apiVersion": "2015-05-01-preview",
+      "tags": {
+        "displayName": "Public IP Address"
+      },
+      "type": "Microsoft.Network/publicIPAddresses",
+      "name": "[variables('f5publicIPName')]",
+      "location": "[resourceGroup().location]",
+      "properties": {
+        "publicIPAllocationMethod": "Dynamic",
+        "dnsSettings": {
+          "domainNameLabel": "[parameters('f5Name')]"
+        }
+      }
+    },	  
     {
       "apiVersion": "2015-06-15",
       "tags": {
@@ -231,26 +247,93 @@
         ]
       }
     },
-		{
-      "apiVersion": "2015-05-01-preview",
+    {
+      "apiVersion": "2015-06-15",
       "tags": {
-        "displayName": "Public IP Address"
+        "displayName": "Azure Load Balancer"
       },
-      "type": "Microsoft.Network/publicIPAddresses",
-      "name": "[variables('f5publicIPName')]",
+      "dependsOn": [
+        "[concat('Microsoft.Network/publicIPAddresses/', variables('f5publicIPName'))]"
+      ],
       "location": "[resourceGroup().location]",
+      "name": "[variables('loadBalancerName')]",
       "properties": {
-        "publicIPAllocationMethod": "Dynamic",
-        "dnsSettings": {
-          "domainNameLabel": "[parameters('f5Name')]"
+        "frontendIPConfigurations": [
+          {
+            "name": "loadBalancerFrontEnd",
+            "properties": {
+              "publicIPAddress": {
+                "id": "[variables('publicIPID')]"
+              }
+            }
+          }
+        ],
+        "backendAddressPools": [
+          {
+            "name": "loadBalancerBackEnd"
+          }
+        ],
+        "loadBalancingRules": [
+          {
+            "name": "lbrule",
+            "properties": {
+              "frontendIPConfiguration": {
+                "id": "[concat(resourceId('Microsoft.Network/loadBalancers', variables('loadBalancerName')), '/frontendIpConfigurations/loadBalancerFrontEnd')]"
+              },
+              "backendAddressPool": {
+                "id": "[concat(resourceId('Microsoft.Network/loadBalancers', variables('loadBalancerName')), '/backendAddressPools/loadBalancerBackEnd')]"
+              },
+              "probe": {
+                "id": "[concat(resourceId('Microsoft.Network/loadBalancers', variables('loadBalancerName')), '/probes/lbprobe')]"
+              },
+              "protocol": "Tcp",
+              "frontendPort": 80,
+              "backendPort": 880,
+              "idleTimeoutInMinutes": 15
+            }
+          }
+        ],
+        "probes": [
+          {
+            "properties": {
+              "protocol": "Tcp",
+              "port": 880,
+              "intervalInSeconds": 15,
+              "numberOfProbes": 2
+            },
+            "name": "lbprobe"
+          }
+        ]
+      },
+      "type": "Microsoft.Network/loadBalancers"
+    },
+    {
+      "apiVersion": "2015-01-01",
+      "name": "InboundNATRuleTemplate",
+      "type": "Microsoft.Resources/deployments",
+      "dependsOn": [
+        "[concat('Microsoft.Network/loadBalancers/',variables('loadBalancerName'))]",
+        "[concat('Microsoft.Storage/storageAccounts/', variables('newStorageAccountName'))]",
+        "[concat('Microsoft.Compute/availabilitySets/', variables('avsetNamePrefix'))]"
+      ],
+      "properties": {
+        "mode": "Incremental",
+        "templateLink": {
+          "uri": "[concat(variables('templateLocationPrefix'), 'inboundNATRules.json')]",
+          "contentVersion": "1.0.0.0"
+        },
+        "parameters": {
+          "f5Name": { "value": "[parameters('f5Name')]" },
+          "numberOFBIGIPs": { "value": "[parameters('numberOFBIGIPs')]" }
         }
       }
-    },    
+    }, 
     {
       "apiVersion": "2015-01-01",
       "name": "BIGIPTemplate",
       "type": "Microsoft.Resources/deployments",
       "dependsOn": [
+        "[concat('Microsoft.Resources/deployments/', 'InboundNATRuleTemplate')]",	      
         "[concat('Microsoft.Storage/storageAccounts/', variables('newStorageAccountName'))]",
         "[concat('Microsoft.Compute/availabilitySets/', variables('avsetNamePrefix'))]"
       ],
