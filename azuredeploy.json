@@ -64,6 +64,18 @@
         "description": "The size of the BIG-IP Instance."
       }
     },
+    "licensedBandwidth": {
+      "allowedValues": [
+        "25m", 
+        "200m", 
+        "1g"
+      ], 
+      "defaultValue": "25m", 
+        "metadata": {
+          "description": "PAYG licensed bandwidth(Mbps) image to deploy"
+        }, 
+        "type": "string"
+     },     
     "numberOFBIGIPs": {
       "type": "int",
       "defaultValue": 2,
@@ -122,11 +134,9 @@
     "newStorageAccountName": "[concat(parameters('f5Name'),'store')]",
     "loadBalancerName": "[concat(parameters('f5Name'),'-ALB')]", 
     "publicIPID": "[resourceId('Microsoft.Network/publicIPAddresses',variables('f5publicIPName'))]",
-    "skuHash": {
-      "Good": "f5-bigip-virtual-edition-good-byol",
-      "Better": "f5-bigip-virtual-edition-better-byol",
-      "Best": "f5-bigip-virtual-edition-best-byol"
-    },
+    "imageNameToLower": "[toLower(parameters('f5SKU'))]",     
+    "skuToUse": "[concat('f5-bigip-virtual-edition-', parameters('licensedBandwidth'), '-', variables('imageNameToLower'),'-hourly')]", 
+    "offerToUse": "f5-big-ip-hourly",
     "templateLocationPrefix": "https://raw.githubusercontent.com/f5devcentral/f5-azure-multi-nic/master/",
     "bigipHash": {
       "0": "[concat(variables('templateLocationPrefix'),'two_nic_bigip_vm.json')]",
@@ -161,7 +171,10 @@
       "location": "[resourceGroup().location]",
       "apiVersion": "2015-06-15",
       "properties": {
-        "accountType": "Premium_LRS"
+        "accountType": "Premium_LRS",
+        "offer": "[variables('offerToUse')]", 
+        "publisher": "f5-networks", 
+        "sku": "[variables('skuToUse')]"        
       }
     },
     {
@@ -254,7 +267,8 @@
           "numberOFBIGIPs": { "value": "[parameters('numberOFBIGIPs')]" },
           "adminUsername": { "value": "[parameters('adminUsername')]" },
           "adminPassword": { "value": "[parameters('adminPassword')]" },
-          "f5SKU": { "value": "[variables('skuHash')[parameters('f5SKU')]]" },
+          "f5SKU": { "value": "[variables('skuToUse')]" },
+          "offer": "[variables('offerToUse')]",
           "vnetResourceGroupName": { "value": "[toLower(parameters('vnetResourceGroupName'))]" },
           "vnetName": { "value": "[parameters('vnetName')]" },
           "externalSubnetName": { "value": "[parameters('externalSubnetName')]" },
