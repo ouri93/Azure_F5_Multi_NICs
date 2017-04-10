@@ -11,9 +11,6 @@
     "numberOFBIGIPs": {
       "type": "int"
     },
-    "licensedBandwidth": {
-      "type": "string"
-    },
     "adminUsername": {
       "type": "string"
     },
