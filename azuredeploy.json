@@ -172,9 +172,9 @@
       "apiVersion": "2015-06-15",
       "properties": {
         "accountType": "Premium_LRS",
-        "offer": "[variables('offerToUse')]", 
+        "offer": "f5-big-ip-hourly", 
         "publisher": "f5-networks", 
-        "sku": "[variables('skuToUse')]"        
+        "sku": "f5-bigip-virtual-edition-25m-good-hourly"        
       }
     },
     {
