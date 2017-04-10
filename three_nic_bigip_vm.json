@@ -168,12 +168,7 @@
       "type": "Microsoft.Compute/virtualMachines",
       "name": "[concat(parameters('f5Name'),copyIndex())]",
       "location": "[resourceGroup().location]",
-      "plan": {
-        "name": "[parameters('f5SKU')]",
-        "publisher": "f5-networks",
-        "product": "f5-big-ip-hourly"
 
-      },
       "properties": {
         "availabilitySet": {
           "id": "[resourceId('Microsoft.Compute/availabilitySets',variables('avsetNamePrefix'))]"
@@ -191,7 +186,7 @@
             "publisher": "f5-networks",
             "offer": "f5-big-ip-hourly",
             "sku": "f5-bigip-virtual-edition-25m-good-hourly",
-            "version": "latest"
+            "version": "13.0.000"
           },
           "osDisk": {
             "name": "[concat(parameters('f5Name'), 'osDisk',copyIndex())]",
