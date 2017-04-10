@@ -172,9 +172,6 @@
       "apiVersion": "2015-06-15",
       "properties": {
         "accountType": "Premium_LRS",
-        "offer": "f5-big-ip-hourly", 
-        "publisher": "f5-networks", 
-        "sku": "f5-bigip-virtual-edition-25m-good-hourly"        
       }
     },
     {
@@ -243,7 +240,21 @@
               "direction": "Inbound",
               "access": "Allow"
             }
-          }
+          },
+          {
+            "name": "app_rule_880",
+            "properties": {
+              "description": "",
+              "priority": 104,
+              "sourceAddressPrefix": "*",
+              "sourcePortRange": "*",
+              "destinationAddressPrefix": "*",
+              "destinationPortRange": "880",
+              "protocol": "Tcp",
+              "direction": "Inbound",
+              "access": "Allow"
+            }
+          },          
         ]
       }
     },
