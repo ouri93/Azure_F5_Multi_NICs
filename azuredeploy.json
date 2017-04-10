@@ -32,7 +32,7 @@
     },
     "f5Name": {
       "type": "string",
-      "defaultValue": "f5devext-ltm",
+      "defaultValue": "f5extweb-ltm",
       "metadata": {
         "description": "The Unique Name of the BIG-IP instance, that will be used for the Public DNS Name of the Public IP."
       }
