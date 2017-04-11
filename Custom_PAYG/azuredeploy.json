@@ -118,11 +118,11 @@
     "loadBalancerName": "[concat(parameters('f5Name'),'-ALB')]", 
     "publicIPID": "[resourceId('Microsoft.Network/publicIPAddresses',variables('f5publicIPName'))]",
     "skuHash": {
-      "Good": "f5-bigip-virtual-edition-good-byol",
-      "Better": "f5-bigip-virtual-edition-better-byol",
-      "Best": "f5-bigip-virtual-edition-best-byol"
+      "Good": "f5-bigip-virtual-edition-good-hourly",
+      "Better": "f5-bigip-virtual-edition-better-hourly",
+      "Best": "f5-bigip-virtual-edition-best-hourly"
     },
-    "templateLocationPrefix": "https://raw.githubusercontent.com/f5devcentral/f5-azure-multi-nic/master/",
+    "templateLocationPrefix": "https://raw.githubusercontent.com/ouri93/Azure_F5_Multi_NICs/master/Custom_PAYG/",
     "bigipHash": {
       "0": "[concat(variables('templateLocationPrefix'),'two_nic_bigip_vm.json')]",
       "1": "[concat(variables('templateLocationPrefix'),'three_nic_bigip_vm.json')]",
