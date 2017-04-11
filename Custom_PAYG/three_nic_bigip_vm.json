@@ -186,7 +186,7 @@
         "storageProfile": {
           "imageReference": {
             "publisher": "f5-networks",
-            "offer": "f5-big-ip",
+            "offer": "f5-big-ip-hourly",
             "sku": "[parameters('f5SKU')]",
             "version": "latest"
           },
