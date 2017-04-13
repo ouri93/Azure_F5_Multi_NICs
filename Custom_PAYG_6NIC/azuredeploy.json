@@ -124,7 +124,7 @@
       "Better": "f5-bigip-virtual-edition-25m-better-hourly",
       "Best": "f5-bigip-virtual-edition-25m-best-hourly"
     },
-    "templateLocationPrefix": "https://raw.githubusercontent.com/ouri93/Azure_F5_Multi_NICs/master/Custom_PAYG/",
+    "templateLocationPrefix": "https://raw.githubusercontent.com/ouri93/Azure_F5_Multi_NICs/master/Custom_PAYG_6NIC/",
     "bigipHash": {
       "0": "[concat(variables('templateLocationPrefix'),'two_nic_bigip_vm.json')]",
       "1": "[concat(variables('templateLocationPrefix'),'three_nic_bigip_vm.json')]",
