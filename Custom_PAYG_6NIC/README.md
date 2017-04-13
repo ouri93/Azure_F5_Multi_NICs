@@ -6,7 +6,7 @@
 # Azure Multi-NIC BIG-IP
 Deploy a Multi-NIC BIG-IP into Azure  
 
-<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fouri93%2FAzure_F5_Multi_NICs%2Fmaster%2FCustom_PAYG%2Fazuredeploy.json" target="_blank">
+<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fouri93%2FAzure_F5_Multi_NICs%2Fmaster%2FCustom_PAYG_6NIC%2Fazuredeploy.json" target="_blank">
     <img src="http://azuredeploy.net/deploybutton.png"/>
 </a>
 
