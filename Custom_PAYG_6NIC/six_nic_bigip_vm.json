@@ -39,7 +39,7 @@
   "variables": {
     "intAddBigIPs": "[int(parameters('numberOFBIGIPs'))]",
     "avsetNamePrefix": "[concat(parameters('f5Name'),'-avset')]",
-    "externalNICNamePrefix": "[concat(parameters('f5Name'),'-externalnic')]",
+    "externalNICNamePrefix": "[concat(parameters('f5Name'),'-mgmtnic')]",
     "udrNICNamePrefix": "[concat(parameters('f5Name'),'-udrnic')]",
     "additionNICNamePrefix": "[concat(parameters('f5Name'),'-nic')]",
     "newStorageAccountName": "[concat(parameters('f5Name'),'store')]",
@@ -55,7 +55,7 @@
     {
       "apiVersion": "2015-05-01-preview",
       "tags": {
-        "displayName": "External NIC"
+        "displayName": "External Mgmt NIC"
       },
       "copy": {
         "count": "[parameters('numberOFBIGIPs')]",
@@ -98,7 +98,7 @@
     {
       "apiVersion": "2015-05-01-preview",
       "tags": {
-        "displayName": "UDR NIC"
+        "displayName": "QA External Pool"
       },
       "copy": {
         "count": "[parameters('numberOFBIGIPs')]",
@@ -125,7 +125,7 @@
     {
       "apiVersion": "2015-05-01-preview",
       "tags": {
-        "displayName": "Additional NIC 0"
+        "displayName": "Dev External Pool"
       },
       "copy": {
         "count": "[variables('intAddBigIPs')]",
@@ -151,7 +151,7 @@
     {
       "apiVersion": "2015-05-01-preview",
       "tags": {
-        "displayName": "Additional NIC 1"
+        "displayName": "QA VIP"
       },
       "copy": {
         "count": "[variables('intAddBigIPs')]",
@@ -177,7 +177,7 @@
     {
       "apiVersion": "2015-05-01-preview",
       "tags": {
-        "displayName": "Additional NIC 2"
+        "displayName": "Dev VIP"
       },
       "copy": {
         "count": "[variables('intAddBigIPs')]",
@@ -203,7 +203,7 @@
     {
       "apiVersion": "2015-05-01-preview",
       "tags": {
-        "displayName": "Additional NIC 3"
+        "displayName": "F5 LTM HA"
       },
       "copy": {
         "count": "[variables('intAddBigIPs')]",
@@ -249,7 +249,7 @@
       "plan": {
         "name": "[parameters('f5SKU')]",
         "publisher": "f5-networks",
-        "product": "f5-big-ip"
+        "product": "f5-big-ip-hourly"
 
       },
       "properties": {
@@ -267,7 +267,7 @@
         "storageProfile": {
           "imageReference": {
             "publisher": "f5-networks",
-            "offer": "f5-big-ip",
+            "offer": "f5-big-ip-hourly",
             "sku": "[parameters('f5SKU')]",
             "version": "latest"
           },
