@@ -39,7 +39,7 @@
   "variables": {
     "intAddBigIPs": "[int(parameters('numberOFBIGIPs'))]",
     "avsetNamePrefix": "[concat(parameters('f5Name'),'-avset')]",
-    "externalNICNamePrefix": "[concat(parameters('f5Name'),'-mgmtnic')]",
+    "externalNICNamePrefix": "[concat(parameters('f5Name'),'-externalnic')]",
     "udrNICNamePrefix": "[concat(parameters('f5Name'),'-udrnic')]",
     "additionNICNamePrefix": "[concat(parameters('f5Name'),'-nic')]",
     "newStorageAccountName": "[concat(parameters('f5Name'),'store')]",
@@ -55,7 +55,7 @@
     {
       "apiVersion": "2015-05-01-preview",
       "tags": {
-        "displayName": "External Mgmt NIC"
+        "displayName": "External NIC"
       },
       "copy": {
         "count": "[parameters('numberOFBIGIPs')]",
@@ -98,7 +98,7 @@
     {
       "apiVersion": "2015-05-01-preview",
       "tags": {
-        "displayName": "QA External Pool"
+        "displayName": "UDR NIC"
       },
       "copy": {
         "count": "[parameters('numberOFBIGIPs')]",
@@ -125,7 +125,7 @@
     {
       "apiVersion": "2015-05-01-preview",
       "tags": {
-        "displayName": "Dev External Pool"
+        "displayName": "Additional NIC 0"
       },
       "copy": {
         "count": "[variables('intAddBigIPs')]",
@@ -151,7 +151,7 @@
     {
       "apiVersion": "2015-05-01-preview",
       "tags": {
-        "displayName": "QA VIP"
+        "displayName": "Additional NIC 1"
       },
       "copy": {
         "count": "[variables('intAddBigIPs')]",
@@ -177,7 +177,7 @@
     {
       "apiVersion": "2015-05-01-preview",
       "tags": {
-        "displayName": "Dev VIP"
+        "displayName": "Additional NIC 2"
       },
       "copy": {
         "count": "[variables('intAddBigIPs')]",
@@ -203,7 +203,7 @@
     {
       "apiVersion": "2015-05-01-preview",
       "tags": {
-        "displayName": "F5 LTM HA"
+        "displayName": "Additional NIC 3"
       },
       "copy": {
         "count": "[variables('intAddBigIPs')]",
