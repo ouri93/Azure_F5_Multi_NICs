@@ -225,7 +225,7 @@
               "direction": "Inbound",
               "access": "Allow"
             }
-          }
+          },
           {
             "name": "new_https_8443",
             "properties": {
