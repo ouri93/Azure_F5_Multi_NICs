@@ -47,7 +47,7 @@
     },
     "f5Size": {
       "type": "string",
-      "defaultValue": "Standard_F2s",
+      "defaultValue": "Standard_DS4_v2",
       "allowedValues": [
         "Standard_DS2_v2",
         "Standard_DS3_v2",
@@ -75,7 +75,7 @@
     },
     "numberOfAdditionalInterfaces": {
       "type": "string",
-      "defaultValue": "0",
+      "defaultValue": "4",
       "metadata": {
         "description": "By default two interfaces are deployed.  If the VM instance that you have chosen supports more than two, you can specify the additional number of NIC's here.  So if you can have 4, you would specify 2 here.  Zero, means only 2 NIC's will be deployed."
       },
@@ -226,6 +226,20 @@
               "access": "Allow"
             }
           }
+          {
+            "name": "new_https_8443",
+            "properties": {
+              "description": "",
+              "priority": 104,
+              "sourceAddressPrefix": "*",
+              "sourcePortRange": "*",
+              "destinationAddressPrefix": "*",
+              "destinationPortRange": "8443",
+              "protocol": "Tcp",
+              "direction": "Inbound",
+              "access": "Allow"
+            }
+          }          
         ]
       }
     },    
