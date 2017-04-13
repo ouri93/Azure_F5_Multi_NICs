@@ -239,6 +239,7 @@
               "direction": "Inbound",
               "access": "Allow"
             }
+          }
           }          
         ]
       }
