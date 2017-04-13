@@ -55,7 +55,7 @@
     {
       "apiVersion": "2015-05-01-preview",
       "tags": {
-        "displayName": "External NIC"
+        "displayName": "External Mgmt NIC"
       },
       "copy": {
         "count": "[parameters('numberOFBIGIPs')]",
@@ -98,7 +98,7 @@
     {
       "apiVersion": "2015-05-01-preview",
       "tags": {
-        "displayName": "UDR NIC"
+        "displayName": "F5 LTM HA NIC"
       },
       "copy": {
         "count": "[parameters('numberOFBIGIPs')]",
@@ -125,7 +125,7 @@
     {
       "apiVersion": "2015-05-01-preview",
       "tags": {
-        "displayName": "Additional NIC 0"
+        "displayName": "QA Ext VIP NIC"
       },
       "copy": {
         "count": "[variables('intAddBigIPs')]",
@@ -151,7 +151,7 @@
     {
       "apiVersion": "2015-05-01-preview",
       "tags": {
-        "displayName": "Additional NIC 1"
+        "displayName": "Dev Ext VIP NIC"
       },
       "copy": {
         "count": "[variables('intAddBigIPs')]",
@@ -177,7 +177,7 @@
     {
       "apiVersion": "2015-05-01-preview",
       "tags": {
-        "displayName": "Additional NIC 2"
+        "displayName": "Qa Ext Pool NIC"
       },
       "copy": {
         "count": "[variables('intAddBigIPs')]",
@@ -203,7 +203,7 @@
     {
       "apiVersion": "2015-05-01-preview",
       "tags": {
-        "displayName": "Additional NIC 3"
+        "displayName": "Dev Ext Pool NIC"
       },
       "copy": {
         "count": "[variables('intAddBigIPs')]",
