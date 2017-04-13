@@ -113,6 +113,7 @@
     "avsetNamePrefix": "[concat(parameters('f5Name'),'-avset')]",
     "vnetID": "[resourceId(parameters('vnetResourceGroupName'),'Microsoft.Network/virtualNetworks',parameters('vnetName'))]",
     "subnet-idInternal": "[concat(variables('vnetID'),'/subnets/',parameters('internalSubnetName'))]",
+    "f5publicIPName": "[concat(parameters('f5Name'),'-IP')]",    
     "newStorageAccountName": "[concat(parameters('f5Name'),'store')]",
     "skuHash": {
       "Good": "f5-bigip-virtual-edition-25m-good-hourly",
@@ -162,6 +163,7 @@
         "displayName": "Public IP Address"
       },
       "type": "Microsoft.Network/publicIPAddresses",
+      "name": "[variables('f5publicIPName')]",      
       "location": "[resourceGroup().location]",
       "properties": {
         "publicIPAllocationMethod": "Dynamic",
