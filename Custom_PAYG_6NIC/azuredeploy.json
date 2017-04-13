@@ -10,14 +10,14 @@
     },
     "vnetName": {
       "type": "string",
-      "defaultvalue": "LITRBox"
+      "defaultvalue": "LITRBox",
       "metadata": {
         "description": "The Name of the existing virtual network that you want to connect the BIG-IP's to."
       }
     },
     "externalSubnetName": {
       "type": "string",
-      "defaultvalue": "F5ExtWeb"
+      "defaultvalue": "F5ExtWeb",
       "metadata": {
         "description": "Name of first subnet - with External Acccess to Internet."
       }
