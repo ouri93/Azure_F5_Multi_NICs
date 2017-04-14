@@ -127,7 +127,7 @@
       "Better": "f5-bigip-virtual-edition-good-200m-hourly",
       "Best": "f5-bigip-virtual-edition-good-1g-hourly"
     },
-    "templateLocationPrefix": "https://raw.githubusercontent.com/f5devcentral/f5-azure-multi-nic/master/",
+    "templateLocationPrefix": "https://raw.githubusercontent.com/ouri93/Azure_F5_Multi_NICs/master/",
     "bigipHash": {
       "0": "[concat(variables('templateLocationPrefix'),'two_nic_bigip_vm.json')]",
       "1": "[concat(variables('templateLocationPrefix'),'three_nic_bigip_vm.json')]",
