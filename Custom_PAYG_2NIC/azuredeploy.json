@@ -4,38 +4,42 @@
   "parameters": {
     "vnetResourceGroupName": {
       "type": "string",
+      "defaultvalue": "LITRBoxF5",
       "metadata": {
         "description": "The Resource Group Name that contains the Virtual Network that will be external."
       }
     },
     "vnetName": {
       "type": "string",
+      "defaultvalue": "LITRBox",
       "metadata": {
         "description": "The Name of the existing virtual network that you want to connect the BIG-IP's to."
       }
     },
     "externalSubnetName": {
       "type": "string",
+      "defaultvalue": "F5ExtWeb",
       "metadata": {
         "description": "Name of first subnet - with External Acccess to Internet."
       }
     },
     "internalSubnetName": {
       "type": "string",
+      "defaultvalue": "DevExternal",
       "metadata": {
         "description": "Name of internal Subnet for UDR, NOT the subnet with the Servers in it."
       }
     },
     "f5Name": {
       "type": "string",
-      "defaultValue": "bigip",
+      "defaultValue": "f5dltm",
       "metadata": {
         "description": "The Unique Name of the BIG-IP instance, that will be used for the Public DNS Name of the Public IP."
       }
     },
     "f5SKU": {
       "type": "string",
-      "defaultValue": "Best",
+      "defaultValue": "Good",
       "allowedValues": [
         "Good",
         "Better",
@@ -47,7 +51,7 @@
     },
     "f5Size": {
       "type": "string",
-      "defaultValue": "Standard_F2s",
+      "defaultValue": "Standard_DS2_v2",
       "allowedValues": [
         "Standard_DS2_v2",
         "Standard_DS3_v2",
@@ -91,13 +95,14 @@
     },
     "additionalSubnets":{
       "type": "string",
-      "defaultValue": "",
+      "defaultValue": "DevExternal",
       "metadata": {
         "description": "A semi-colon delimited string of subnets, one for each of the additional interfaces. If zero, leave this field blank, if one enter a single subnet, if two type two subnet names separated by a semi-colon.  Exmaple subnet3;subnet4"
       }
     },
     "adminUsername": {
       "type": "string",
+      "defaultValue": "netsvcs",
       "metadata": {
         "description": "User name to login to the BIG-IP."
       }
@@ -118,9 +123,9 @@
     "loadBalancerName": "[concat(parameters('f5Name'),'-ALB')]", 
     "publicIPID": "[resourceId('Microsoft.Network/publicIPAddresses',variables('f5publicIPName'))]",
     "skuHash": {
-      "Good": "f5-bigip-virtual-edition-good-byol",
-      "Better": "f5-bigip-virtual-edition-better-byol",
-      "Best": "f5-bigip-virtual-edition-best-byol"
+      "Good": "f5-bigip-virtual-edition-good-25m-hourly",
+      "Better": "f5-bigip-virtual-edition-good-200m-hourly",
+      "Best": "f5-bigip-virtual-edition-good-1g-hourly"
     },
     "templateLocationPrefix": "https://raw.githubusercontent.com/f5devcentral/f5-azure-multi-nic/master/",
     "bigipHash": {
