@@ -39,21 +39,23 @@
   "variables": {
     "intAddBigIPs": "[int(parameters('numberOFBIGIPs'))]",
     "avsetNamePrefix": "[concat(parameters('f5Name'),'-avset')]",
-    "externalNICNamePrefix": "[concat(parameters('f5Name'),'-mgmtnic')]",
-    "udrNICNamePrefix": "[concat(parameters('f5Name'),'-qextnic')]",
+    "externalNICNamePrefix": "[concat(parameters('f5Name'),'-externalnic')]",
+    "udrNICNamePrefix": "[concat(parameters('f5Name'),'-udrnic')]",
     "additionNICNamePrefix": "[concat(parameters('f5Name'),'-nic')]",
     "newStorageAccountName": "[concat(parameters('f5Name'),'store')]",
     "vnetID": "[resourceId(parameters('vnetResourceGroupName'),'Microsoft.Network/virtualNetworks',parameters('vnetName'))]",
     "subnet-idExternal": "[concat(variables('vnetID'),'/subnets/',parameters('externalSubnetName'))]",
     "subnet-idInternal": "[concat(variables('vnetID'),'/subnets/',parameters('internalSubnetName'))]",
     "nsgID": "[resourceId('Microsoft.Network/networkSecurityGroups/',concat(parameters('f5Name'),'-nsg'))]",
+    "loadBalancerName": "[concat(parameters('f5Name'),'-ALB')]",
+    "lbID": "[resourceId('Microsoft.Network/loadBalancers',variables('loadBalancerName'))]",
     "additionalSubnets": "[split(parameters('additionalSubnets'), ';')]"
   },
   "resources": [
     {
       "apiVersion": "2015-05-01-preview",
       "tags": {
-        "displayName": "External Mgmt NIC"
+        "displayName": "External NIC"
       },
       "copy": {
         "count": "[parameters('numberOFBIGIPs')]",
@@ -74,7 +76,20 @@
               "privateIPAllocationMethod": "Dynamic",
               "subnet": {
                 "id": "[variables('subnet-idExternal')]"
-              }
+              },
+              "loadBalancerBackendAddressPools": [
+                {
+                  "id": "[concat(variables('lbID'), '/backendAddressPools/', 'loadBalancerBackEnd')]"
+                }
+              ],
+              "loadBalancerInboundNatRules": [
+                {
+                  "id": "[concat(variables('lbID'), '/inboundNatRules/', 'guimgt',copyIndex())]"
+                },
+                {
+                  "id": "[concat(variables('lbID'), '/inboundNatRules/', 'sshmgt',copyIndex())]"
+                }
+              ]
             }
           }
         ]
@@ -83,7 +98,7 @@
     {
       "apiVersion": "2015-05-01-preview",
       "tags": {
-        "displayName": "F5 LTM HA NIC"
+        "displayName": "UDR NIC"
       },
       "copy": {
         "count": "[parameters('numberOFBIGIPs')]",
@@ -110,7 +125,7 @@
     {
       "apiVersion": "2015-05-01-preview",
       "tags": {
-        "displayName": "QA Ext VIP NIC"
+        "displayName": "Additional NIC 0"
       },
       "copy": {
         "count": "[variables('intAddBigIPs')]",
@@ -136,7 +151,7 @@
     {
       "apiVersion": "2015-05-01-preview",
       "tags": {
-        "displayName": "Dev Ext VIP NIC"
+        "displayName": "Additional NIC 1"
       },
       "copy": {
         "count": "[variables('intAddBigIPs')]",
@@ -162,7 +177,7 @@
     {
       "apiVersion": "2015-05-01-preview",
       "tags": {
-        "displayName": "Qa Ext Pool NIC"
+        "displayName": "Additional NIC 2"
       },
       "copy": {
         "count": "[variables('intAddBigIPs')]",
@@ -188,7 +203,7 @@
     {
       "apiVersion": "2015-05-01-preview",
       "tags": {
-        "displayName": "Dev Ext Pool NIC"
+        "displayName": "Additional NIC 3"
       },
       "copy": {
         "count": "[variables('intAddBigIPs')]",
@@ -234,7 +249,7 @@
       "plan": {
         "name": "[parameters('f5SKU')]",
         "publisher": "f5-networks",
-        "product": "f5-big-ip-hourly"
+        "product": "f5-big-ip"
 
       },
       "properties": {
@@ -252,7 +267,7 @@
         "storageProfile": {
           "imageReference": {
             "publisher": "f5-networks",
-            "offer": "f5-big-ip-hourly",
+            "offer": "f5-big-ip",
             "sku": "[parameters('f5SKU')]",
             "version": "latest"
           },

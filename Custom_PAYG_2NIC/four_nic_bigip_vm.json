@@ -98,7 +98,7 @@
     {
       "apiVersion": "2015-05-01-preview",
       "tags": {
-        "displayName": "QA External"
+        "displayName": "UDR NIC"
       },
       "copy": {
         "count": "[parameters('numberOFBIGIPs')]",
@@ -125,7 +125,7 @@
     {
       "apiVersion": "2015-05-01-preview",
       "tags": {
-        "displayName": "Dev External"
+        "displayName": "Additional NIC 0"
       },
       "copy": {
         "count": "[variables('intAddBigIPs')]",
@@ -151,7 +151,7 @@
     {
       "apiVersion": "2015-05-01-preview",
       "tags": {
-        "displayName": "LTM HA"
+        "displayName": "Additional NIC 1"
       },
       "copy": {
         "count": "[variables('intAddBigIPs')]",
@@ -195,7 +195,7 @@
       "plan": {
         "name": "[parameters('f5SKU')]",
         "publisher": "f5-networks",
-        "product": "f5-big-ip-hourly"
+        "product": "f5-big-ip"
 
       },
       "properties": {
@@ -213,7 +213,7 @@
         "storageProfile": {
           "imageReference": {
             "publisher": "f5-networks",
-            "offer": "f5-big-ip-hourly",
+            "offer": "f5-big-ip",
             "sku": "[parameters('f5SKU')]",
             "version": "latest"
           },
