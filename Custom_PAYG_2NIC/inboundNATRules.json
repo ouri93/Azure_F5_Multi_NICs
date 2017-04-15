@@ -4,7 +4,7 @@
   "parameters": {
     "f5Name": {
       "type": "string",
-      "defaultValue": "bigip",
+      "defaultValue": "f5dltm",
       "metadata": {
         "description": "The Unique Name of the BIG-IP instance, that will be used for the Public DNS Name of the Public IP."
       }
