@@ -123,9 +123,9 @@
     "loadBalancerName": "[concat(parameters('f5Name'),'-ALB')]", 
     "publicIPID": "[resourceId('Microsoft.Network/publicIPAddresses',variables('f5publicIPName'))]",
     "skuHash": {
-      "Good": "f5-bigip-virtual-edition-good-25m-hourly",
-      "Better": "f5-bigip-virtual-edition-better-200m-hourly",
-      "Best": "f5-bigip-virtual-edition-best-1g-hourly"
+      "Good": "f5-bigip-virtual-edition-25m-good-hourly",
+      "Better": "f5-bigip-virtual-edition-25m-better-hourly",
+      "Best": "f5-bigip-virtual-edition-1g-best-hourly"
     },
     "templateLocationPrefix": "https://raw.githubusercontent.com/ouri93/Azure_F5_Multi_NICs/master/Custom_PAYG_2NIC/",
     "bigipHash": {
