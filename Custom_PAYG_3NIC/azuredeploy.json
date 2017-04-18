@@ -25,21 +25,21 @@
     },
     "internalSubnetName": {
       "type": "string",
-      "defaultvalue": "DevExternal",
+      "defaultvalue": "F5_DevExtVIP",
       "metadata": {
         "description": "Name of internal Subnet for UDR, NOT the subnet with the Servers in it."
       }
     },
     "f5Name": {
       "type": "string",
-      "defaultValue": "f5dltm",
+      "defaultValue": "f5eltm",
       "metadata": {
         "description": "The Unique Name of the BIG-IP instance, that will be used for the Public DNS Name of the Public IP."
       }
     },
     "f5SKU": {
       "type": "string",
-      "defaultValue": "Good",
+      "defaultValue": "Best",
       "allowedValues": [
         "Good",
         "Better",
@@ -51,7 +51,7 @@
     },
     "f5Size": {
       "type": "string",
-      "defaultValue": "Standard_DS2_v2",
+      "defaultValue": "Standard_DS3_v2",
       "allowedValues": [
         "Standard_DS2_v2",
         "Standard_DS3_v2",
@@ -66,7 +66,7 @@
     },
     "numberOFBIGIPs": {
       "type": "int",
-      "defaultValue": 2,
+      "defaultValue": 1,
       "metadata": {
         "description": "The total number of BIG-IP's (Up to 4) you want to deploy. If you chose no from above, please select 1."
       },
@@ -79,7 +79,7 @@
     },
     "numberOfAdditionalInterfaces": {
       "type": "string",
-      "defaultValue": "0",
+      "defaultValue": "1",
       "metadata": {
         "description": "By default two interfaces are deployed.  If the VM instance that you have chosen supports more than two, you can specify the additional number of NIC's here.  So if you can have 4, you would specify 2 here.  Zero, means only 2 NIC's will be deployed."
       },
@@ -95,7 +95,7 @@
     },
     "additionalSubnets":{
       "type": "string",
-      "defaultValue": "DevExternal",
+      "defaultValue": "DevInternal",
       "metadata": {
         "description": "A semi-colon delimited string of subnets, one for each of the additional interfaces. If zero, leave this field blank, if one enter a single subnet, if two type two subnet names separated by a semi-colon.  Exmaple subnet3;subnet4"
       }
