@@ -1,4 +1,4 @@
-﻿{
+{
   "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
   "parameters": {
@@ -39,23 +39,21 @@
   "variables": {
     "intAddBigIPs": "[int(parameters('numberOFBIGIPs'))]",
     "avsetNamePrefix": "[concat(parameters('f5Name'),'-avset')]",
-    "externalNICNamePrefix": "[concat(parameters('f5Name'),'-externalnic')]",
-    "udrNICNamePrefix": "[concat(parameters('f5Name'),'-udrnic')]",
-    "additionNICNamePrefix": "[concat(parameters('f5Name'),'-nic')]",
+    "externalNICNamePrefix": "[concat(parameters('f5Name'),'-mgmtnic')]",
+    "udrNICNamePrefix": "[concat(parameters('f5Name'),'-devextvipnic')]",
+    "additionNICNamePrefix": "[concat(parameters('f5Name'),'-devextpoolnic')]",
     "newStorageAccountName": "[concat(parameters('f5Name'),'store')]",
     "vnetID": "[resourceId(parameters('vnetResourceGroupName'),'Microsoft.Network/virtualNetworks',parameters('vnetName'))]",
     "subnet-idExternal": "[concat(variables('vnetID'),'/subnets/',parameters('externalSubnetName'))]",
     "subnet-idInternal": "[concat(variables('vnetID'),'/subnets/',parameters('internalSubnetName'))]",
     "nsgID": "[resourceId('Microsoft.Network/networkSecurityGroups/',concat(parameters('f5Name'),'-nsg'))]",
-    "loadBalancerName": "[concat(parameters('f5Name'),'-ALB')]",
-    "lbID": "[resourceId('Microsoft.Network/loadBalancers',variables('loadBalancerName'))]",
     "additionalSubnets": "[split(parameters('additionalSubnets'), ';')]"
   },
   "resources": [
     {
       "apiVersion": "2015-05-01-preview",
       "tags": {
-        "displayName": "External NIC"
+        "displayName": "External Mgmt NIC"
       },
       "copy": {
         "count": "[parameters('numberOFBIGIPs')]",
@@ -76,20 +74,7 @@
               "privateIPAllocationMethod": "Dynamic",
               "subnet": {
                 "id": "[variables('subnet-idExternal')]"
-              },
-              "loadBalancerBackendAddressPools": [
-                {
-                  "id": "[concat(variables('lbID'), '/backendAddressPools/', 'loadBalancerBackEnd')]"
-                }
-              ],
-              "loadBalancerInboundNatRules": [
-                {
-                  "id": "[concat(variables('lbID'), '/inboundNatRules/', 'guimgt',copyIndex())]"
-                },
-                {
-                  "id": "[concat(variables('lbID'), '/inboundNatRules/', 'sshmgt',copyIndex())]"
-                }
-              ]
+              }
             }
           }
         ]
@@ -98,7 +83,7 @@
     {
       "apiVersion": "2015-05-01-preview",
       "tags": {
-        "displayName": "UDR NIC"
+        "displayName": "F5 Dev External VIP"
       },
       "copy": {
         "count": "[parameters('numberOFBIGIPs')]",
@@ -125,7 +110,7 @@
     {
       "apiVersion": "2015-05-01-preview",
       "tags": {
-        "displayName": "Additional NIC 0"
+        "displayName": "Dev Ext Server Pool"
       },
       "copy": {
         "count": "[variables('intAddBigIPs')]",
@@ -168,7 +153,7 @@
       "plan": {
         "name": "[parameters('f5SKU')]",
         "publisher": "f5-networks",
-        "product": "f5-big-ip"
+        "product": "f5-big-ip-hourly"
 
       },
       "properties": {
@@ -186,7 +171,7 @@
         "storageProfile": {
           "imageReference": {
             "publisher": "f5-networks",
-            "offer": "f5-big-ip",
+            "offer": "f5-big-ip-hourly",
             "sku": "[parameters('f5SKU')]",
             "version": "latest"
           },
