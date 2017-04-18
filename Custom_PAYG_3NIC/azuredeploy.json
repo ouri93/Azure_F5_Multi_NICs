@@ -11,21 +11,21 @@
     },
     "vnetName": {
       "type": "string",
-      "defaultvalue": "LITRBox",      
+      "defaultvalue": "LITRBox",      
       "metadata": {
         "description": "The Name of the existing virtual network that you want to connect the BIG-IP's to."
       }
     },
     "externalSubnetName": {
       "type": "string",
-      "defaultvalue": "F5ExtWeb",      
+      "defaultvalue": "F5ExtWeb",      
       "metadata": {
         "description": "Name of first subnet - with External Acccess to Internet."
       }
     },
     "internalSubnetName": {
       "type": "string",
-      "defaultvalue": "F5_DevExtVIP",      
+      "defaultvalue": "F5_DevExtVIP",      
       "metadata": {
         "description": "Name of internal Subnet for UDR, NOT the subnet with the Servers in it."
       }
