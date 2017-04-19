@@ -4,35 +4,35 @@
   "parameters": {
     "vnetResourceGroupName": {
       "type": "string",
-      "defaultvalue": "LITRBoxF5",
+      "defaultValue": "LITRBoxF5",
       "metadata": {
         "description": "The Resource Group Name that contains the Virtual Network that will be external."
       }
     },
     "vnetName": {
       "type": "string",
-      "defaultvalue": "LITRBox",      
+      "defaultValue": "LITRBox",      
       "metadata": {
         "description": "The Name of the existing virtual network that you want to connect the BIG-IP's to."
       }
     },
     "externalSubnetName": {
       "type": "string",
-      "defaultvalue": "F5ExtWeb",      
+      "defaultValue": "F5ExtWeb",      
       "metadata": {
         "description": "Name of first subnet - with External Acccess to Internet."
       }
     },
     "internalSubnetName": {
       "type": "string",
-      "defaultvalue": "F5_DevExtVIP",      
+      "defaultValue": "F5_DevExtVIP",      
       "metadata": {
         "description": "Name of internal Subnet for UDR, NOT the subnet with the Servers in it."
       }
     },
     "f5Name": {
       "type": "string",
-      "defaultvalue": "f5eltm",
+      "defaultValue": "f5eltm",
       "metadata": {
         "description": "The Unique Name of the BIG-IP instance, that will be used for the Public DNS Name of the Public IP."
       }
@@ -102,7 +102,7 @@
     },
     "adminUsername": {
       "type": "string",
-      "defaultValue": "netsvcs",
+      "defaultValue": "",
       "metadata": {
         "description": "User name to login to the BIG-IP."
       }
