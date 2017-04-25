@@ -4,7 +4,7 @@
   "parameters": {
     "vnetResourceGroupName": {
       "type": "string",
-      "defaultValue": "HCSNonProdMgmtSC",
+      "defaultValue": "HCSNonProdSC",
       "metadata": {
         "description": "The Resource Group Name that contains the Virtual Network that will be external."
       }
@@ -95,7 +95,7 @@
     },
     "additionalSubnets":{
       "type": "string",
-      "defaultValue": "F5QaInternalWeb;F5ItDevInternalWebTrnsp;F5ItDevInternalWeb;F5DevInternalTrnsp;F5DevInternalWeb",
+      "defaultValue": "F5QaInternalWeb;F5ItDevInternalWebTrnsp;F5ItDevInternalWeb;F5DevInternalWebTrnsp;F5DevInternalWeb",
       "metadata": {
         "description": "A semi-colon delimited string of subnets, one for each of the additional interfaces. If zero, leave this field blank, if one enter a single subnet, if two type two subnet names separated by a semi-colon.  Exmaple subnet3;subnet4"
       }
