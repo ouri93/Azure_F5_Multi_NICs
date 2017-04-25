@@ -74,6 +74,7 @@
               "privateIPAllocationMethod": "Dynamic",
               "subnet": {
                 "id": "[variables('subnet-idExternal')]"
+              }
             }
           }
         ]
