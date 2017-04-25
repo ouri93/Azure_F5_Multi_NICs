@@ -25,7 +25,7 @@
     },
     "internalSubnetName": {
       "type": "string",
-      "defaultValue": "F5DevExternalTrnsp",
+      "defaultValue": "F5QaExternalTrnsp",
       "metadata": {
         "description": "Name of DevExt VIP Subnet"
       }
