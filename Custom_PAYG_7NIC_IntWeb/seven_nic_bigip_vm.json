@@ -40,7 +40,7 @@
     "intAddBigIPs": "[int(parameters('numberOFBIGIPs'))]",
     "avsetNamePrefix": "[concat(parameters('f5Name'),'-avset')]",
     "externalNICNamePrefix": "[concat(parameters('f5Name'),'-mgmtnic')]",
-    "udrNICNamePrefix": "[concat(parameters('f5Name'),'-vnic')]",
+    "udrNICNamePrefix": "[concat(parameters('f5Name'),'-nic0')]",
     "additionNICNamePrefix": "[concat(parameters('f5Name'),'-nic')]",
     "newStorageAccountName": "[concat(parameters('f5Name'),'store')]",
     "vnetID": "[resourceId(parameters('vnetResourceGroupName'),'Microsoft.Network/virtualNetworks',parameters('vnetName'))]",
@@ -82,7 +82,7 @@
     {
       "apiVersion": "2015-05-01-preview",
       "tags": {
-        "displayName": "QAExtWeb VIP NIC"
+        "displayName": "QAIntWeb VIP NIC"
       },
       "copy": {
         "count": "[parameters('numberOFBIGIPs')]",
@@ -109,7 +109,7 @@
     {
       "apiVersion": "2015-05-01-preview",
       "tags": {
-        "displayName": "QAExtWeb Pool NIC"
+        "displayName": "QAIntWeb Pool NIC"
       },
       "copy": {
         "count": "[variables('intAddBigIPs')]",
@@ -135,7 +135,7 @@
     {
       "apiVersion": "2015-05-01-preview",
       "tags": {
-        "displayName": "ItDevExtWeb VIP NIC"
+        "displayName": "ItDevIntWeb VIP NIC"
       },
       "copy": {
         "count": "[variables('intAddBigIPs')]",
@@ -161,7 +161,7 @@
     {
       "apiVersion": "2015-05-01-preview",
       "tags": {
-        "displayName": "ItDevExtWeb POOL NIC"
+        "displayName": "ItDevIntWeb POOL NIC"
       },
       "copy": {
         "count": "[variables('intAddBigIPs')]",
@@ -187,7 +187,7 @@
     {
       "apiVersion": "2015-05-01-preview",
       "tags": {
-        "displayName": "DevExtApp VIP NIC"
+        "displayName": "DevIntApp VIP NIC"
       },
       "copy": {
         "count": "[variables('intAddBigIPs')]",
@@ -213,7 +213,7 @@
     {
       "apiVersion": "2015-05-01-preview",
       "tags": {
-        "displayName": "DevExtApp POOL NIC"
+        "displayName": "DevIntApp POOL NIC"
       },
       "copy": {
         "count": "[variables('intAddBigIPs')]",
