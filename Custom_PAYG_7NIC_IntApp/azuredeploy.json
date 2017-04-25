@@ -4,7 +4,7 @@
   "parameters": {
     "vnetResourceGroupName": {
       "type": "string",
-      "defaultValue": "HCSNonProdMgmtSC",
+      "defaultValue": "HCSNonProdSC",
       "metadata": {
         "description": "The Resource Group Name that contains the Virtual Network that will be external."
       }
