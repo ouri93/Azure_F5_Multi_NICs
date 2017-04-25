@@ -3,10 +3,10 @@
 [![Issues](https://img.shields.io/github/issues/f5devcentral/f5-azure-multi-nic.svg)](https://github.com/f5devcentral/f5-azure-multi-nic/issues)
 [![TMOS Version](https://img.shields.io/badge/tmos--version-12.1-ff0000.svg)](https://github.com/f5devcentral/f5-azure-multi-nic)
 
-# Azure 6-NIC BIG-IP (NO AZLB)
+# Azure 7-NIC BIG-IP (Standalone F5(NO HA), NO AZLB)
 Deploy a Multi-NIC BIG-IP into Azure  
 
-<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fouri93%2FAzure_F5_Multi_NICs%2Fmaster%2FCustom_PAYG_6NIC%2Fazuredeploy.json" target="_blank">
+<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fouri93%2FAzure_F5_Multi_NICs%2Fmaster%2FCustom_PAYG_7NIC%2Fazuredeploy.json" target="_blank">
     <img src="http://azuredeploy.net/deploybutton.png"/>
 </a>
 
