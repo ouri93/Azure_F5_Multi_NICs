@@ -25,14 +25,14 @@
     },
     "internalSubnetName": {
       "type": "string",
-      "defaultValue": "F5DevExternalTrnsp",
+      "defaultValue": "F5QaInternalAppTrnsp",
       "metadata": {
         "description": "Name of DevExt VIP Subnet"
       }
     },
     "f5Name": {
       "type": "string",
-      "defaultValue": "azrdo90007",
+      "defaultValue": "azrdo90009",
       "metadata": {
         "description": "The Unique Name of the BIG-IP instance, that will be used for the Public DNS Name of the Public IP."
       }
@@ -95,7 +95,7 @@
     },
     "additionalSubnets":{
       "type": "string",
-      "defaultValue": "F5QaExternalWeb;F5ItDevExternalWebTrnsp;F5ItDevExternalWeb;F5DevExternalTrnsp;F5DevExternalWeb",
+      "defaultValue": "F5QaInternalApp;F5ItDevInternalAppTrnsp;F5ItDevInternalApp;F5DevInternalAppTrnsp;F5DevInternalApp",
       "metadata": {
         "description": "A semi-colon delimited string of subnets, one for each of the additional interfaces. If zero, leave this field blank, if one enter a single subnet, if two type two subnet names separated by a semi-colon.  Exmaple subnet3;subnet4"
       }
@@ -124,7 +124,7 @@
       "Better": "f5-bigip-virtual-edition-25m-better-hourly",
       "Best": "f5-bigip-virtual-edition-25m-best-hourly"
     },
-    "templateLocationPrefix": "https://raw.githubusercontent.com/ouri93/Azure_F5_Multi_NICs/master/Custom_PAYG_7NIC/",
+    "templateLocationPrefix": "https://raw.githubusercontent.com/ouri93/Azure_F5_Multi_NICs/master/Custom_PAYG_7NIC_IntApp/",
     "bigipHash": {
       "0": "[concat(variables('templateLocationPrefix'),'two_nic_bigip_vm.json')]",
       "1": "[concat(variables('templateLocationPrefix'),'three_nic_bigip_vm.json')]",
