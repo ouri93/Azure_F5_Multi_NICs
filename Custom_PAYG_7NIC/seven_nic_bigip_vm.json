@@ -40,7 +40,7 @@
     "intAddBigIPs": "[int(parameters('numberOFBIGIPs'))]",
     "avsetNamePrefix": "[concat(parameters('f5Name'),'-avset')]",
     "externalNICNamePrefix": "[concat(parameters('f5Name'),'-mgmtnic')]",
-    "udrNICNamePrefix": "[concat(parameters('f5Name'),'-nic0')]",
+    "udrNICNamePrefix": "[concat(parameters('f5Name'),'-vnic')]",
     "additionNICNamePrefix": "[concat(parameters('f5Name'),'-nic')]",
     "newStorageAccountName": "[concat(parameters('f5Name'),'store')]",
     "vnetID": "[resourceId(parameters('vnetResourceGroupName'),'Microsoft.Network/virtualNetworks',parameters('vnetName'))]",
